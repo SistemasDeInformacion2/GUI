@@ -1,18 +1,16 @@
-﻿-- -------------------------------------------------------------------------
+-- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Mon Jun 06 15:36:04 BOT 2016 with easyDesigner
+-- exported at Mon Jun 06 18:27:36 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
 -- Table: TAREA
 -- -------------------------------------------------------------------------
 CREATE TABLE "TAREA" (
-  "ID_TAREA" bigserial NOT NULL,
   "HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
   "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
-  "COMPLEJIDAD" INTEGER NULL,
-  PRIMARY KEY ("ID_TAREA", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+  PRIMARY KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
 );
 
 -- -------------------------------------------------------------------------
@@ -44,9 +42,7 @@ CREATE TABLE "HISTORIA DE USUARIO" (
   "PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "COMPLEJIDAD" INTEGER NULL,
   "IMPORTANCIA" INTEGER NULL,
-  "TITULO" VARCHAR(255) NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
-  "CONDICIONES DE SATISFACCION" VARCHAR(255) NULL,
   PRIMARY KEY ("ID_HIUS", "PRODUCT OWNER_ID_PO")
 );
 
@@ -68,7 +64,6 @@ CREATE TABLE "SPRINT" (
 -- -------------------------------------------------------------------------
 CREATE TABLE "ESTADO DE TAREA" (
   "IDESTADO" bigserial NOT NULL,
-  "ID_TAREA" INTEGER NOT NULL,
   "TAREA_HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
   "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
@@ -172,6 +167,17 @@ CREATE TABLE "ROL" (
 );
 
 -- -------------------------------------------------------------------------
+-- Table: ASIGNACION TAREA-MIEMBROEQUIPO
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" (
+  "ID-AS" bigserial NOT NULL,
+  "TAREA_HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
+  "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
+  "MIEMBRO EQUIPO_ID_EQ" INTEGER NOT NULL,
+  PRIMARY KEY ("ID-AS", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO", "MIEMBRO EQUIPO_ID_EQ")
+);
+
+-- -------------------------------------------------------------------------
 -- Relations for table: TAREA
 -- -------------------------------------------------------------------------
 ALTER TABLE "TAREA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
@@ -218,8 +224,8 @@ ALTER TABLE "SPRINT" ADD FOREIGN KEY ("PLANNING_MIEMBRO EQUIPO_ID_EQ", "PLANNING
 -- -------------------------------------------------------------------------
 -- Relations for table: ESTADO DE TAREA
 -- -------------------------------------------------------------------------
-ALTER TABLE "ESTADO DE TAREA" ADD FOREIGN KEY ("ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
-    REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+ALTER TABLE "ESTADO DE TAREA" ADD FOREIGN KEY ("TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
+    REFERENCES "TAREA" ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
@@ -290,3 +296,16 @@ ALTER TABLE "TRABAJADOR" ADD FOREIGN KEY ("ROL_ID_ROL")
     REFERENCES "ROL" ("ID_ROL")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNACION TAREA-MIEMBROEQUIPO
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" ADD FOREIGN KEY ("TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
+    REFERENCES "TAREA" ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" ADD FOREIGN KEY ("MIEMBRO EQUIPO_ID_EQ") 
+    REFERENCES "MIEMBRO EQUIPO" ("ID_EQ")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
