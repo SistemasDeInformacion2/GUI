@@ -6,6 +6,8 @@
 package home;
 
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JPanel;
 
 /**
@@ -19,6 +21,7 @@ public class HomeGUI extends javax.swing.JFrame {
      */
     public HomeGUI() {
         initComponents();
+        this.setTitle("Scrum");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
@@ -35,10 +38,18 @@ public class HomeGUI extends javax.swing.JFrame {
         paneles = new javax.swing.JTabbedPane();
         taskboard = new javax.swing.JPanel();
         sprint = new javax.swing.JPanel();
+        sprintPanel = new javax.swing.JPanel();
+        sprintLabel = new javax.swing.JLabel();
+        boxSprint = new javax.swing.JComboBox<>();
+        okSprint = new javax.swing.JButton();
+        newSprint = new javax.swing.JButton();
         charts = new javax.swing.JPanel();
         backlog = new javax.swing.JPanel();
+        sprintBacklog = new javax.swing.JPanel();
+        usuarios = new javax.swing.JPanel();
         scrollHistorias = new javax.swing.JScrollPane();
         panelHistorias = new javax.swing.JPanel();
+        newHistory = new javax.swing.JButton();
         
         numeroHistorias = 10;
         userHistories = new JPanel[numeroHistorias];
@@ -58,35 +69,7 @@ public class HomeGUI extends javax.swing.JFrame {
         );
 
         paneles.addTab("TaskBoard", taskboard);
-
-        javax.swing.GroupLayout sprintLayout = new javax.swing.GroupLayout(sprint);
-        sprint.setLayout(sprintLayout);
-        sprintLayout.setHorizontalGroup(
-            sprintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
-        );
-        sprintLayout.setVerticalGroup(
-            sprintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
-        );
-
-        paneles.addTab("Sprint", sprint);
-
-        javax.swing.GroupLayout chartsLayout = new javax.swing.GroupLayout(charts);
-        charts.setLayout(chartsLayout);
-        chartsLayout.setHorizontalGroup(
-            chartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
-        );
-        chartsLayout.setVerticalGroup(
-            chartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
-        );
-
-        paneles.addTab("Charts", charts);
-    
-        
-
+      
         for(int h = 0; h<numeroHistorias; h++){
             
             historia = new javax.swing.JPanel();
@@ -106,11 +89,6 @@ public class HomeGUI extends javax.swing.JFrame {
             tituloHistoria.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
             tituloHistoria.setText("Historia");
             tituloHistoria.setBorder(null);
-            tituloHistoria.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    tituloHistoriaActionPerformed(evt);
-                }
-            });
 
             userHistory.setEditable(false);
             userHistory.setBackground(historia.getBackground());
@@ -134,22 +112,13 @@ public class HomeGUI extends javax.swing.JFrame {
             valorImportancia.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
             valorImportancia.setText("100");
             valorImportancia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            valorImportancia.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    valorImportanciaActionPerformed(evt);
-                }
-            });
 
             valorComplejidad.setEditable(false);
             valorComplejidad.setBackground(historia.getBackground());
             valorComplejidad.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
             valorComplejidad.setText("10");
             valorComplejidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            valorComplejidad.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    valorComplejidadActionPerformed(evt);
-                }
-            });
+            
             userHistories[h] = historia;
             
             javax.swing.GroupLayout historiaLayout = new javax.swing.GroupLayout(userHistories[h]);
@@ -198,28 +167,40 @@ public class HomeGUI extends javax.swing.JFrame {
             userHistLay[h] = historiaLayout;
         }
 
+        newHistory.setText("Nueva Historia");
+        newHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anadirHistoria(evt);
+            }
+        });
         javax.swing.GroupLayout panelHistoriasLayout = new javax.swing.GroupLayout(panelHistorias);
         panelHistorias.setLayout(panelHistoriasLayout);
+        
+        
+        ParallelGroup aux = panelHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+        for(int ha=0; ha<numeroHistorias; ha++){
+            aux.addComponent(userHistories[ha],javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+        }
+        SequentialGroup aux2 = panelHistoriasLayout.createSequentialGroup().addContainerGap();
+        aux2.addComponent(newHistory).addGap(23, 23, 23);
+        for(int h2=0; h2<numeroHistorias; h2++){
+            aux2.addComponent(userHistories[h2], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED);
+        }
+        
+
         panelHistoriasLayout.setHorizontalGroup(
             panelHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHistoriasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userHistories[0], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userHistories[1], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userHistories[2], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(aux.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistoriasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(newHistory)))
                 .addContainerGap())
         );
         panelHistoriasLayout.setVerticalGroup(
             panelHistoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHistoriasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(userHistories[0], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userHistories[1], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userHistories[2], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(aux2)
         );
 
         scrollHistorias.setViewportView(panelHistorias);
@@ -236,6 +217,110 @@ public class HomeGUI extends javax.swing.JFrame {
         );
 
         paneles.addTab("Product Backlog", backlog);
+        
+        sprintPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        sprintLabel.setText("Seleccione el Sprint a trabajar:");
+
+        boxSprint.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4" }));
+
+        okSprint.setText("OK");
+        okSprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarSprint(evt);
+            }
+        });
+        
+        newSprint.setText("Nuevo Sprint");
+        newSprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoSprint(evt);
+            }
+        });
+        
+
+        javax.swing.GroupLayout sprintPanelLayout = new javax.swing.GroupLayout(sprintPanel);
+        sprintPanel.setLayout(sprintPanelLayout);
+        sprintPanelLayout.setHorizontalGroup(
+            sprintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sprintPanelLayout.createSequentialGroup()
+                .addGroup(sprintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sprintPanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(sprintLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sprintPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(newSprint)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sprintPanelLayout.createSequentialGroup()
+                .addGap(0, 104, Short.MAX_VALUE)
+                .addGroup(sprintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sprintPanelLayout.createSequentialGroup()
+                        .addComponent(boxSprint, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sprintPanelLayout.createSequentialGroup()
+                        .addComponent(okSprint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(182, 182, 182))))
+        );
+        sprintPanelLayout.setVerticalGroup(
+            sprintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sprintPanelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(sprintLabel)
+                .addGap(24, 24, 24)
+                .addComponent(boxSprint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(okSprint)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(newSprint)
+                .addContainerGap())
+        );
+        
+        javax.swing.GroupLayout sprintLayout = new javax.swing.GroupLayout(sprint);
+        sprint.setLayout(sprintLayout);
+        sprintLayout.setHorizontalGroup(
+            sprintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sprintLayout.createSequentialGroup()
+                .addContainerGap(85, Short.MAX_VALUE)
+                .addComponent(sprintPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
+        );
+        sprintLayout.setVerticalGroup(
+            sprintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sprintLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(sprintPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+
+        paneles.addTab("Sprint", sprint);
+
+        javax.swing.GroupLayout chartsLayout = new javax.swing.GroupLayout(charts);
+        charts.setLayout(chartsLayout);
+        chartsLayout.setHorizontalGroup(
+            chartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 592, Short.MAX_VALUE)
+        );
+        chartsLayout.setVerticalGroup(
+            chartsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
+        );
+
+        paneles.addTab("Charts", charts);
+    
+        javax.swing.GroupLayout usuariosLayout = new javax.swing.GroupLayout(usuarios);
+        usuarios.setLayout(usuariosLayout);
+        usuariosLayout.setHorizontalGroup(
+            usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 592, Short.MAX_VALUE)
+        );
+        usuariosLayout.setVerticalGroup(
+            usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
+        );
+
+        paneles.addTab("Team", usuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,18 +336,21 @@ public class HomeGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void tituloHistoriaActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-    }                                              
-
-    private void valorImportanciaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
-
-    private void valorComplejidadActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
-
+    private void anadirHistoria(java.awt.event.ActionEvent evt) {                                           
+        // registrar una nueva historia
+        System.out.println("nueva HIstoria");
+    }
+    private void seleccionarSprint(java.awt.event.ActionEvent evt) {                                         
+        // seleccionar Sprint a trabajar
+        System.out.println("Sprint #");
+    }  
+    private void nuevoSprint(java.awt.event.ActionEvent evt) {                                           
+        // registrar nuevo sprint
+        
+        System.out.println("nuevo Sprint");
+    }         
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -298,7 +386,9 @@ public class HomeGUI extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify
+    private javax.swing.JPanel sprintBacklog;
+    private javax.swing.JPanel usuarios;
     private javax.swing.JPanel backlog;
     private javax.swing.JPanel charts;
     private javax.swing.JLabel etComplejidad;
@@ -308,15 +398,20 @@ public class HomeGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane paneles;
     private javax.swing.JScrollPane scrollHistorias;
     private javax.swing.JScrollPane scrollHistory;
+    private javax.swing.JLabel sprintLabel;
+    private javax.swing.JPanel sprintPanel;
     private javax.swing.JPanel sprint;
     private javax.swing.JPanel taskboard;
     private javax.swing.JTextField tituloHistoria;
     private javax.swing.JTextArea userHistory;
     private javax.swing.JTextField valorComplejidad;
     private javax.swing.JTextField valorImportancia;
-    
+    private javax.swing.JButton newHistory;
+    private javax.swing.JButton newSprint;
+    private javax.swing.JButton okSprint;
     private JPanel[] userHistories;
     private GroupLayout[] userHistLay;
+    private javax.swing.JComboBox<String> boxSprint;
     private int numeroHistorias;
     // End of variables declaration                   
 }
