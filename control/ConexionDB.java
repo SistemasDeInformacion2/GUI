@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package control;
+=======
+package Control;
+>>>>>>> 5b5bbf794638db6650770358749622243a3ddf2d
 
 import java.sql.*;
 
