@@ -20,7 +20,7 @@ public class Registrar_tareas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Ventana.main(args);
+        Registrar_tareas.main(args);
     }
     
     
