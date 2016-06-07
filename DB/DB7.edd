@@ -133,7 +133,9 @@
     <Tables>
       <Table name="TAREA">
         <Columns>
+          <Column name="ID_TAR" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
           <Column name="DESCRIPCION" key="false" dataType="VARCHAR(255)" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="COMPLEJIDAD" key="false" dataType="INTEGER" notNull="false" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys>
           <ForeignKey table="HISTORIA DE USUARIO" column="ID_HIUS" notNull="true" defaultValue="" index="0" name="HISTORIA DE USUARIO_ID_HIUS" />
@@ -193,8 +195,9 @@
           <Column name="DESCRIPCION" key="false" dataType="VARCHAR(255)" notNull="false" autoIncrement="false" defaultValue="" />
         </Columns>
         <ForeignKeys>
-          <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_ID_HIUS" notNull="true" defaultValue="" index="1" name="TAREA_HISTORIA DE USUARIO_ID_HIUS" />
-          <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" notNull="true" defaultValue="" index="2" name="TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" />
+          <ForeignKey table="TAREA" column="ID_TAR" notNull="true" defaultValue="" index="1" name="TAREA_ID_TAR" />
+          <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_ID_HIUS" notNull="true" defaultValue="" index="2" name="TAREA_HISTORIA DE USUARIO_ID_HIUS" />
+          <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" notNull="true" defaultValue="" index="3" name="TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" />
         </ForeignKeys>
         <Indexes />
       </Table>
@@ -297,6 +300,7 @@
           <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_ID_HIUS" notNull="true" defaultValue="" index="1" name="TAREA_HISTORIA DE USUARIO_ID_HIUS" />
           <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" notNull="true" defaultValue="" index="2" name="TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" />
           <ForeignKey table="MIEMBRO EQUIPO" column="ID_EQ" notNull="true" defaultValue="" index="3" name="MIEMBRO EQUIPO_ID_EQ" />
+          <ForeignKey table="TAREA" column="ID_TAR" notNull="true" defaultValue="" index="4" name="TAREA_ID_TAR" />
         </ForeignKeys>
         <Indexes />
       </Table>
@@ -339,10 +343,10 @@
         <Table table="ESTADO DE TAREA" x="55" y="1008" />
         <Table table="PRODUCT OWNER" x="1415" y="551" />
         <Table table="ASIGNACION PROY" x="1213" y="301" />
-        <Table table="SCRUM TEAM" x="903" y="988" />
+        <Table table="MIEMBRO EQUIPO" x="560" y="570" />
         <Table table="ASIGNACION TAREA-MIEMBROEQUIPO" x="316" y="863" />
         <Table table="TAREA" x="80" y="567" />
-        <Table table="MIEMBRO EQUIPO" x="560" y="570" />
+        <Table table="SCRUM TEAM" x="903" y="988" />
       </Tables>
       <Relations>
         <Relation source="MIEMBRO EQUIPO" destination="MIEMBRO EQUIPO" division="1.0" />
@@ -372,6 +376,6 @@
       </Regions>
     </Shapes>
   </Diagram>
-  <Viewport zoom="0.56" x="11" y="42" />
+  <Viewport zoom="0.56" x="11" y="139" />
 </easyDesigner>
 
