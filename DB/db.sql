@@ -1,6 +1,10 @@
 ﻿-- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
+<<<<<<< HEAD
 -- exported at Mon Jun 06 15:36:04 BOT 2016 with easyDesigner
+=======
+-- exported at Mon Jun 06 23:27:09 BOT 2016 with easyDesigner
+>>>>>>> 0c0eb85796328a7cfd43b87db0bd4d2d06d1c35e
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
@@ -10,9 +14,14 @@ CREATE TABLE "TAREA" (
   "ID_TAREA" bigserial NOT NULL,
   "HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
   "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
+  "ID_TAR" bigserial NOT NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
   "COMPLEJIDAD" INTEGER NULL,
+<<<<<<< HEAD
   PRIMARY KEY ("ID_TAREA", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+=======
+  PRIMARY KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO", "ID_TAR")
+>>>>>>> 0c0eb85796328a7cfd43b87db0bd4d2d06d1c35e
 );
 
 -- -------------------------------------------------------------------------
@@ -68,7 +77,11 @@ CREATE TABLE "SPRINT" (
 -- -------------------------------------------------------------------------
 CREATE TABLE "ESTADO DE TAREA" (
   "IDESTADO" bigserial NOT NULL,
+<<<<<<< HEAD
   "ID_TAREA" INTEGER NOT NULL,
+=======
+  "TAREA_ID_TAR" INTEGER NOT NULL,
+>>>>>>> 0c0eb85796328a7cfd43b87db0bd4d2d06d1c35e
   "TAREA_HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
   "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
@@ -172,6 +185,21 @@ CREATE TABLE "ROL" (
 );
 
 -- -------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+-- Table: ASIGNACION TAREA-MIEMBROEQUIPO
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" (
+  "ID-AS" bigserial NOT NULL,
+  "TAREA_HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
+  "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
+  "MIEMBRO EQUIPO_ID_EQ" INTEGER NOT NULL,
+  "TAREA_ID_TAR" INTEGER NOT NULL,
+  PRIMARY KEY ("ID-AS", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO", "MIEMBRO EQUIPO_ID_EQ", "TAREA_ID_TAR")
+);
+
+-- -------------------------------------------------------------------------
+>>>>>>> 0c0eb85796328a7cfd43b87db0bd4d2d06d1c35e
 -- Relations for table: TAREA
 -- -------------------------------------------------------------------------
 ALTER TABLE "TAREA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
@@ -218,10 +246,17 @@ ALTER TABLE "SPRINT" ADD FOREIGN KEY ("PLANNING_MIEMBRO EQUIPO_ID_EQ", "PLANNING
 -- -------------------------------------------------------------------------
 -- Relations for table: ESTADO DE TAREA
 -- -------------------------------------------------------------------------
+<<<<<<< HEAD
 ALTER TABLE "ESTADO DE TAREA" ADD FOREIGN KEY ("ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
     REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
+=======
+ALTER TABLE "ESTADO DE TAREA" ADD FOREIGN KEY ("TAREA_ID_TAR", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
+    REFERENCES "TAREA" ("ID_TAR", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+      ON DELETE CASCADE
+      ON UPDATE CASCADE;
+>>>>>>> 0c0eb85796328a7cfd43b87db0bd4d2d06d1c35e
 
 -- -------------------------------------------------------------------------
 -- Relations for table: PLANNING
@@ -288,5 +323,23 @@ ALTER TABLE "IDENTIDAD LOG" ADD FOREIGN KEY ("TRABAJADOR_ID_TRAB")
 -- -------------------------------------------------------------------------
 ALTER TABLE "TRABAJADOR" ADD FOREIGN KEY ("ROL_ID_ROL") 
     REFERENCES "ROL" ("ID_ROL")
+<<<<<<< HEAD
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
+=======
+      ON DELETE CASCADE
+      ON UPDATE CASCADE;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNACION TAREA-MIEMBROEQUIPO
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" ADD FOREIGN KEY ("TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO", "TAREA_ID_TAR") 
+    REFERENCES "TAREA" ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO", "ID_TAR")
+      ON DELETE CASCADE
+      ON UPDATE CASCADE;
+ALTER TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" ADD FOREIGN KEY ("MIEMBRO EQUIPO_ID_EQ") 
+    REFERENCES "MIEMBRO EQUIPO" ("ID_EQ")
+      ON DELETE CASCADE
+      ON UPDATE CASCADE;
+
+>>>>>>> 0c0eb85796328a7cfd43b87db0bd4d2d06d1c35e
