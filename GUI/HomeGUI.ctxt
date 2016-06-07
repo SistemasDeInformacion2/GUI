@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=
-comment0.target=HomeGUI()
+comment0.params=idProyecto
+comment0.target=HomeGUI(int)
 comment1.params=
 comment1.target=void\ initComponents()
 comment2.params=evt
@@ -15,4 +15,6 @@ comment6.params=evt
 comment6.target=void\ seleccionarSprint(java.awt.event.ActionEvent)
 comment7.params=evt
 comment7.target=void\ nuevoSprint(java.awt.event.ActionEvent)
-numComments=8
+comment8.params=
+comment8.target=int\ getIdProyecto()
+numComments=9

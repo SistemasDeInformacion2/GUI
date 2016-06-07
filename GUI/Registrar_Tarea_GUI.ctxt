@@ -9,5 +9,4 @@ comment3.params=evt
 comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
 comment4.params=evt
 comment4.target=void\ cancelar_buttonActionPerformed(java.awt.event.ActionEvent)
-comment4.text=private\ void\ subir_buttonActionPerformed(java.awt.event.ActionEvent\ evt)\ {//GEN-FIRST\:event_subir_buttonActionPerformed\r\n\ \ \ \ \ \ \ \ if(Registrar_tareas.subir_Tareas(descripcion_box.getText())){\r\n\ \ \ \ \ \ \ \ \ \ \ \ answer.setText("Tarea\ subida\!");\r\n\ \ \ \ \ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else{\r\n\ \ \ \ \ \ \ \ \ \ \ \ answer.setText("Tarea\ no\ subida\!");\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ dispose();\r\n\ \ \ \ \ \ \ \ \r\n}
 numComments=5

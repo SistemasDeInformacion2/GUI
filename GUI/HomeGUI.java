@@ -7,7 +7,9 @@ import control.*;
 
 public class HomeGUI extends javax.swing.JFrame 
 {
-    public HomeGUI() 
+    private int idProyecto;
+    
+    public HomeGUI( int idProyecto ) 
     {
         initComponents();
         this.setTitle("Scrum");
@@ -327,22 +329,28 @@ public class HomeGUI extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>                        
+    }                      
 
-    private void anadirHistoria(java.awt.event.ActionEvent evt) {                                           
-        // registrar una nueva historia
-        addHistoryGUI nueva_ventana_historia = new addHistoryGUI();
+    private void anadirHistoria(java.awt.event.ActionEvent evt) 
+    {                                           
+        addHistoryGUI nueva_ventana_historia = new addHistoryGUI( this );
     }
-    private void seleccionarSprint(java.awt.event.ActionEvent evt) {                                         
-        // seleccionar Sprint a trabajar
-        System.out.println("Sprint #");
-    }  
-    private void nuevoSprint(java.awt.event.ActionEvent evt) {                                           
-        // registrar nuevo sprint
-        
-        System.out.println("nuevo Sprint");
+    
+    private void seleccionarSprint(java.awt.event.ActionEvent evt) 
+    {                                         
+        SprintGUI sprint = new SprintGUI();
+    }
+    
+    private void nuevoSprint(java.awt.event.ActionEvent evt) 
+    {                                           
+        Nuevo_Sprint_GUI nuevoSprint = new Nuevo_Sprint_GUI();
     }         
-
+    
+    public int getIdProyecto()
+    {
+        return idProyecto;
+    }
+    
     // Variables declaration - do not modify
     private javax.swing.JPanel sprintBacklog;
     private javax.swing.JPanel usuarios;

@@ -94,20 +94,8 @@ public class Registrar_Tarea_GUI extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    /*private void subir_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subir_buttonActionPerformed
-        if(Registrar_tareas.subir_Tareas(descripcion_box.getText())){
-            answer.setText("Tarea subida!");
-            
-        }
-        else{
-            answer.setText("Tarea no subida!");
-        }
-        dispose();
-        
-    }*///GEN-LAST:event_subir_buttonActionPerformed
-
+    }
+    
     private void cancelar_buttonActionPerformed(java.awt.event.ActionEvent evt) 
     {
         this.dispose();

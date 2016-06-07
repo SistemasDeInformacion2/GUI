@@ -1,16 +1,18 @@
--- -------------------------------------------------------------------------
+﻿-- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Mon Jun 06 20:25:47 BOT 2016 with easyDesigner
+-- exported at Mon Jun 06 15:36:04 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
 -- Table: TAREA
 -- -------------------------------------------------------------------------
 CREATE TABLE "TAREA" (
+  "ID_TAREA" bigserial NOT NULL,
   "HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
   "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
-  PRIMARY KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+  "COMPLEJIDAD" INTEGER NULL,
+  PRIMARY KEY ("ID_TAREA", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
 );
 
 -- -------------------------------------------------------------------------
@@ -42,7 +44,9 @@ CREATE TABLE "HISTORIA DE USUARIO" (
   "PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "COMPLEJIDAD" INTEGER NULL,
   "IMPORTANCIA" INTEGER NULL,
+  "TITULO" VARCHAR(255) NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
+  "CONDICIONES DE SATISFACCION" VARCHAR(255) NULL,
   PRIMARY KEY ("ID_HIUS", "PRODUCT OWNER_ID_PO")
 );
 
@@ -64,6 +68,7 @@ CREATE TABLE "SPRINT" (
 -- -------------------------------------------------------------------------
 CREATE TABLE "ESTADO DE TAREA" (
   "IDESTADO" bigserial NOT NULL,
+  "ID_TAREA" INTEGER NOT NULL,
   "TAREA_HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
   "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR(255) NULL,
@@ -167,23 +172,12 @@ CREATE TABLE "ROL" (
 );
 
 -- -------------------------------------------------------------------------
--- Table: ASIGNACION TAREA-MIEMBROEQUIPO
--- -------------------------------------------------------------------------
-CREATE TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" (
-  "ID-AS" bigserial NOT NULL,
-  "TAREA_HISTORIA DE USUARIO_ID_HIUS" INTEGER NOT NULL,
-  "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO" INTEGER NOT NULL,
-  "MIEMBRO EQUIPO_ID_EQ" INTEGER NOT NULL,
-  PRIMARY KEY ("ID-AS", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO", "MIEMBRO EQUIPO_ID_EQ")
-);
-
--- -------------------------------------------------------------------------
 -- Relations for table: TAREA
 -- -------------------------------------------------------------------------
 ALTER TABLE "TAREA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
     REFERENCES "HISTORIA DE USUARIO" ("ID_HIUS", "PRODUCT OWNER_ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: MIEMBRO EQUIPO
@@ -194,118 +188,105 @@ ALTER TABLE "MIEMBRO EQUIPO" ADD FOREIGN KEY ("MIEMBRO EQUIPO_ID_EQ")
       ON UPDATE CASCADE;
 ALTER TABLE "MIEMBRO EQUIPO" ADD FOREIGN KEY ("ROL_ID_ROL") 
     REFERENCES "ROL" ("ID_ROL")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: PRODUCT OWNER
 -- -------------------------------------------------------------------------
 ALTER TABLE "PRODUCT OWNER" ADD FOREIGN KEY ("ROL_ID_ROL") 
     REFERENCES "ROL" ("ID_ROL")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: HISTORIA DE USUARIO
 -- -------------------------------------------------------------------------
 ALTER TABLE "HISTORIA DE USUARIO" ADD FOREIGN KEY ("PRODUCT OWNER_ID_PO") 
     REFERENCES "PRODUCT OWNER" ("ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: SPRINT
 -- -------------------------------------------------------------------------
 ALTER TABLE "SPRINT" ADD FOREIGN KEY ("PLANNING_MIEMBRO EQUIPO_ID_EQ", "PLANNING_PRODUCT OWNER_ID_PO", "PLANNING_ID_P") 
     REFERENCES "PLANNING" ("MIEMBRO EQUIPO_ID_EQ", "PRODUCT OWNER_ID_PO", "ID_P")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: ESTADO DE TAREA
 -- -------------------------------------------------------------------------
-ALTER TABLE "ESTADO DE TAREA" ADD FOREIGN KEY ("TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
-    REFERENCES "TAREA" ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+ALTER TABLE "ESTADO DE TAREA" ADD FOREIGN KEY ("ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
+    REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: PLANNING
 -- -------------------------------------------------------------------------
 ALTER TABLE "PLANNING" ADD FOREIGN KEY ("MIEMBRO EQUIPO_ID_EQ") 
     REFERENCES "MIEMBRO EQUIPO" ("ID_EQ")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 ALTER TABLE "PLANNING" ADD FOREIGN KEY ("PRODUCT OWNER_ID_PO") 
     REFERENCES "PRODUCT OWNER" ("ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: ASIGNACION SPRINT-HU
 -- -------------------------------------------------------------------------
 ALTER TABLE "ASIGNACION SPRINT-HU" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
     REFERENCES "HISTORIA DE USUARIO" ("ID_HIUS", "PRODUCT OWNER_ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 ALTER TABLE "ASIGNACION SPRINT-HU" ADD FOREIGN KEY ("SPRINT_ID_SP", "SPRINT_PLANNING_MIEMBRO EQUIPO_ID_EQ", "SPRINT_PLANNING_PRODUCT OWNER_ID_PO", "SPRINT_PLANNING_ID_P") 
     REFERENCES "SPRINT" ("ID_SP", "PLANNING_MIEMBRO EQUIPO_ID_EQ", "PLANNING_PRODUCT OWNER_ID_PO", "PLANNING_ID_P")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: SCRUM TEAM
 -- -------------------------------------------------------------------------
 ALTER TABLE "SCRUM TEAM" ADD FOREIGN KEY ("PRODUCT OWNER_ID_PO") 
     REFERENCES "PRODUCT OWNER" ("ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 ALTER TABLE "SCRUM TEAM" ADD FOREIGN KEY ("MIEMBRO EQUIPO_ID_EQ") 
     REFERENCES "MIEMBRO EQUIPO" ("ID_EQ")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: ASIGNACION PROY
 -- -------------------------------------------------------------------------
 ALTER TABLE "ASIGNACION PROY" ADD FOREIGN KEY ("SCRUM TEAM_PRODUCT OWNER_ID_PO", "SCRUM TEAM_MIEMBRO EQUIPO_ID_EQ", "SCRUM TEAM_ID_STEAM") 
     REFERENCES "SCRUM TEAM" ("PRODUCT OWNER_ID_PO", "MIEMBRO EQUIPO_ID_EQ", "ID_STEAM")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 ALTER TABLE "ASIGNACION PROY" ADD FOREIGN KEY ("PROYECTO_ID_PROY") 
     REFERENCES "PROYECTO" ("ID_PROY")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: IDENTIDAD LOG
 -- -------------------------------------------------------------------------
 ALTER TABLE "IDENTIDAD LOG" ADD FOREIGN KEY ("CUENTAS_ID_CU") 
     REFERENCES "CUENTAS" ("ID_CU")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 ALTER TABLE "IDENTIDAD LOG" ADD FOREIGN KEY ("TRABAJADOR_ID_TRAB") 
     REFERENCES "TRABAJADOR" ("ID_TRAB")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: TRABAJADOR
 -- -------------------------------------------------------------------------
 ALTER TABLE "TRABAJADOR" ADD FOREIGN KEY ("ROL_ID_ROL") 
     REFERENCES "ROL" ("ID_ROL")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
-
--- -------------------------------------------------------------------------
--- Relations for table: ASIGNACION TAREA-MIEMBROEQUIPO
--- -------------------------------------------------------------------------
-ALTER TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" ADD FOREIGN KEY ("TAREA_HISTORIA DE USUARIO_ID_HIUS", "TAREA_HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO") 
-    REFERENCES "TAREA" ("HISTORIA DE USUARIO_ID_HIUS", "HISTORIA DE USUARIO_PRODUCT OWNER_ID_PO")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
-ALTER TABLE "ASIGNACION TAREA-MIEMBROEQUIPO" ADD FOREIGN KEY ("MIEMBRO EQUIPO_ID_EQ") 
-    REFERENCES "MIEMBRO EQUIPO" ("ID_EQ")
-      ON DELETE CASCADE
-      ON UPDATE CASCADE;
-
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;

@@ -13,8 +13,10 @@ public class SprintGUI extends javax.swing.JFrame
         this.setVisible(true);
     }
                     
-    private void initComponents() {
-
+    private void initComponents() 
+    {
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
         paneles = new javax.swing.JTabbedPane();
         taskboard = new javax.swing.JPanel();
         sprint = new javax.swing.JPanel();

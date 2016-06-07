@@ -4,8 +4,11 @@ import control.*;
 
 public class addHistoryGUI extends javax.swing.JFrame 
 {
-    public addHistoryGUI() 
+    private HomeGUI ventanaPrincipal;
+    
+    public addHistoryGUI( HomeGUI ventanaPrincipal ) 
     {       
+        this.ventanaPrincipal = ventanaPrincipal;
         initComponents();
         this.setTitle("Registro de la Historia de Usuario");
         this.setLocationRelativeTo(null);
@@ -66,6 +69,11 @@ public class addHistoryGUI extends javax.swing.JFrame
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelar( evt );
+            }
+        });
 
         jButton2.setText("Registrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +160,11 @@ public class addHistoryGUI extends javax.swing.JFrame
         
     }
     
+    private void cancelar(java.awt.event.ActionEvent evt) 
+    {                                       
+        this.dispose();
+    }
+    
     private void addHistoria( java.awt.event.ActionEvent evt )
     {
         Gestionar_Historias gesHis = new Gestionar_Historias();
@@ -163,7 +176,11 @@ public class addHistoryGUI extends javax.swing.JFrame
             (int)importancia.getValue(), 
             1 ) ) //Este 1 es por que el PO con id 1 es el que ingresa
         {
+            /*Corregir esto en futuras versiones*/
+            
             this.dispose();
+            ventanaPrincipal.dispose();
+            ventanaPrincipal = new HomeGUI( ventanaPrincipal.getIdProyecto() );
         }
         else
             System.out.println("Error! al añadir");

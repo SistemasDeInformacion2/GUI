@@ -1,10 +1,7 @@
 package control;
 
 import java.sql.*;
-<<<<<<< HEAD
 import java.util.*;
-=======
->>>>>>> 5b5bbf794638db6650770358749622243a3ddf2d
 
 public class Gestionar_Historias
 {
@@ -22,12 +19,7 @@ public class Gestionar_Historias
         try
         {           
             String query;
-            
-<<<<<<< HEAD
             query = "INSERT INTO \"HISTORIA DE USUARIO\" (\"PRODUCT OWNER_ID_PO\",\"COMPLEJIDAD\",\"IMPORTANCIA\",\"TITULO\",\"DESCRIPCION\",\"CONDICIONES DE SATISFACCION\") VALUES(?, ?, ?, ?, ?, ?);";
-=======
-            query = "INSERT INTO \"HISTORIA_DE_USUARIO\" (\"PRODUCT OWNER_ID_PO\",\"COMPLEJIDAD\",\"IMPORTANCIA\",\"TITULO\",\"DESCRIPCION\",\"CONDICIONES_DE_SATISFACCION\") VALUES(?, ?, ?, ?, ?, ?);";
->>>>>>> 5b5bbf794638db6650770358749622243a3ddf2d
         
             PreparedStatement sentencia = connection.prepareStatement(query);
             sentencia.setInt    (1, id_product_owner);
@@ -57,12 +49,7 @@ public class Gestionar_Historias
         try
         {            
             String query;
-            
-<<<<<<< HEAD
             query = "UPDATE \"HISTORIA DE USUARIO\" SET \"PRODUCT OWNER_ID_PO\"=?,\"COMPLEJIDAD\"=?,\"IMPORTANCIA\"=?,\"TITULO\"=?,\"DESCRIPCION\"=?,\"CONDICIONES DE SATISFACCION\"=? WHERE \"ID_HIUS\"=? ;";
-=======
-            query = "UPDATE \"HISTORIA_DE_USUARIO\" SET \"PRODUCT OWNER_ID_PO\"=?,\"COMPLEJIDAD\"=?,\"IMPORTANCIA\"=?,\"TITULO\"=?,\"DESCRIPCION\"=?,\"CONDICIONES_DE_SATISFACCION\"=? WHERE \"ID_HIUS\"=? ;";
->>>>>>> 5b5bbf794638db6650770358749622243a3ddf2d
         
             PreparedStatement sentencia = connection.prepareStatement(query);
             sentencia.setInt    (1, id_product_owner);
@@ -93,18 +80,10 @@ public class Gestionar_Historias
         try
         {
             String query;
-            
-<<<<<<< HEAD
             query = "DELETE FROM \"HISTORIA DE USUARIO\" WHERE \"ID_HIUS\"=? ;";
         
             PreparedStatement sentencia = connection.prepareStatement(query);
             sentencia.setInt (1, id_historia_usuario);
-=======
-            query = "DELETE FROM \"HISTORIA_DE_USUARIO\" WHERE \"ID_HIUS\"=? ;";
-        
-            PreparedStatement sentencia = connection.prepareStatement(query);
-            sentencia.setInt    (1, id_historia_usuario);
->>>>>>> 5b5bbf794638db6650770358749622243a3ddf2d
             
             sentencia.execute();
             
@@ -118,7 +97,6 @@ public class Gestionar_Historias
         
         return success;
     }
-<<<<<<< HEAD
     
     public Historia_Usuario getHistoria( int id_historia_usuario )
     {
@@ -127,7 +105,6 @@ public class Gestionar_Historias
         try
         {           
             String query;
-            
             query = "SELECT * FROM \"HISTORIA DE USUARIO\" WHERE \"ID_HIUS\"=? ;";
         
             PreparedStatement sentencia = connection.prepareStatement(query);
@@ -170,7 +147,6 @@ public class Gestionar_Historias
         try
         {           
             String query;
-            
             query = "SELECT * FROM \"HISTORIA DE USUARIO\" ORDER BY \"IMPORTANCIA\" DESC;";
         
             PreparedStatement sentencia = connection.prepareStatement(query);       
@@ -218,6 +194,4 @@ public class Gestionar_Historias
             System.out.println(sqle);
         }
     }
-=======
->>>>>>> 5b5bbf794638db6650770358749622243a3ddf2d
 }
