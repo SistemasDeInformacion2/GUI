@@ -302,26 +302,26 @@
       </Table>
     </Tables>
     <Relations>
-      <Relation name="DA VIDA" source="PRODUCT OWNER" destination="HISTORIA DE USUARIO" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="DA VIDA" source="PRODUCT OWNER" destination="HISTORIA DE USUARIO" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
       <Relation name="SCRUM MASTER" source="MIEMBRO EQUIPO" destination="MIEMBRO EQUIPO" kind="1n_non_id" start="true" definition="true" delete="cascade" update="cascade" />
-      <Relation name="PERTENECE A" source="HISTORIA DE USUARIO" destination="TAREA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="MIEMBRO EQUIPO" destination="PLANNING" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="PRODUCT OWNER" destination="PLANNING" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="PERTENECE A" source="PLANNING" destination="SPRINT" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="CLASIFICA" source="TAREA" destination="ESTADO DE TAREA" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
-      <Relation name="ASIGNADO A" source="HISTORIA DE USUARIO" destination="ASIGNACION SPRINT-HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="ASIGNADO" source="SPRINT" destination="ASIGNACION SPRINT-HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE DE" source="PRODUCT OWNER" destination="SCRUM TEAM" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE DE" source="MIEMBRO EQUIPO" destination="SCRUM TEAM" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="SCRUM TEAM" destination="ASIGNACION PROY" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="PROYECTO" destination="ASIGNACION PROY" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="CUENTAS" destination="IDENTIDAD LOG" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="TRABAJADOR" destination="IDENTIDAD LOG" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="CLASIFICA A" source="ROL" destination="TRABAJADOR" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="ES DETALLE DE" source="ROL" destination="MIEMBRO EQUIPO" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="ES DETALLE DE" source="ROL" destination="PRODUCT OWNER" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="TAREA" destination="ASIGNACION TAREA-MIEMBROEQUIPO" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="COMPONE" source="MIEMBRO EQUIPO" destination="ASIGNACION TAREA-MIEMBROEQUIPO" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="PERTENECE A" source="HISTORIA DE USUARIO" destination="TAREA" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="MIEMBRO EQUIPO" destination="PLANNING" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="PRODUCT OWNER" destination="PLANNING" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="PERTENECE A" source="PLANNING" destination="SPRINT" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="CLASIFICA" source="TAREA" destination="ESTADO DE TAREA" kind="1n_non_id" start="true" definition="true" delete="cascade" update="cascade" />
+      <Relation name="ASIGNADO A" source="HISTORIA DE USUARIO" destination="ASIGNACION SPRINT-HU" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="ASIGNADO" source="SPRINT" destination="ASIGNACION SPRINT-HU" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE DE" source="PRODUCT OWNER" destination="SCRUM TEAM" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE DE" source="MIEMBRO EQUIPO" destination="SCRUM TEAM" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="SCRUM TEAM" destination="ASIGNACION PROY" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="PROYECTO" destination="ASIGNACION PROY" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="CUENTAS" destination="IDENTIDAD LOG" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="TRABAJADOR" destination="IDENTIDAD LOG" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="CLASIFICA A" source="ROL" destination="TRABAJADOR" kind="1n_non_id" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="ES DETALLE DE" source="ROL" destination="MIEMBRO EQUIPO" kind="1n_non_id" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="ES DETALLE DE" source="ROL" destination="PRODUCT OWNER" kind="1n_non_id" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="TAREA" destination="ASIGNACION TAREA-MIEMBROEQUIPO" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
+      <Relation name="COMPONE" source="MIEMBRO EQUIPO" destination="ASIGNACION TAREA-MIEMBROEQUIPO" kind="1n" start="false" definition="true" delete="cascade" update="cascade" />
     </Relations>
   </Model>
   <Diagram>
@@ -334,15 +334,15 @@
         <Table table="IDENTIDAD LOG" x="1949" y="769" />
         <Table table="CUENTAS" x="1702" y="952" />
         <Table table="PROYECTO" x="1688" y="529" />
-        <Table table="ASIGNACION PROY" x="1213" y="301" />
         <Table table="ROL" x="1455" y="1040" />
-        <Table table="SCRUM TEAM" x="903" y="988" />
-        <Table table="PRODUCT OWNER" x="1415" y="551" />
         <Table table="PLANNING" x="634" y="322" />
-        <Table table="MIEMBRO EQUIPO" x="553" y="577" />
-        <Table table="TAREA" x="80" y="567" />
         <Table table="ESTADO DE TAREA" x="55" y="1008" />
+        <Table table="PRODUCT OWNER" x="1415" y="551" />
+        <Table table="ASIGNACION PROY" x="1213" y="301" />
+        <Table table="SCRUM TEAM" x="903" y="988" />
         <Table table="ASIGNACION TAREA-MIEMBROEQUIPO" x="316" y="863" />
+        <Table table="TAREA" x="80" y="567" />
+        <Table table="MIEMBRO EQUIPO" x="560" y="570" />
       </Tables>
       <Relations>
         <Relation source="MIEMBRO EQUIPO" destination="MIEMBRO EQUIPO" division="1.0" />
@@ -351,20 +351,20 @@
         <Relation source="PROYECTO" destination="ASIGNACION PROY" division="0.5081967213114754" />
         <Relation source="TRABAJADOR" destination="IDENTIDAD LOG" division="0.5172413793103449" />
         <Relation source="ROL" destination="TRABAJADOR" division="0.5" />
-        <Relation source="SPRINT" destination="ASIGNACION SPRINT-HU" division="0.5" />
         <Relation source="TAREA" destination="ESTADO DE TAREA" division="0.5" />
         <Relation source="CUENTAS" destination="IDENTIDAD LOG" division="0.5882352941176471" />
         <Relation source="PLANNING" destination="SPRINT" division="0.53125" />
-        <Relation source="PRODUCT OWNER" destination="PLANNING" division="0.5" />
         <Relation source="ROL" destination="PRODUCT OWNER" division="0.5" />
-        <Relation source="ROL" destination="MIEMBRO EQUIPO" division="0.625" />
-        <Relation source="PRODUCT OWNER" destination="SCRUM TEAM" division="0.5084745762711864" />
-        <Relation source="SCRUM TEAM" destination="ASIGNACION PROY" division="0.5" />
-        <Relation source="PRODUCT OWNER" destination="HISTORIA DE USUARIO" division="0.5" />
-        <Relation source="MIEMBRO EQUIPO" destination="PLANNING" division="0.5" />
         <Relation source="TAREA" destination="ASIGNACION TAREA-MIEMBROEQUIPO" division="0.5" />
         <Relation source="MIEMBRO EQUIPO" destination="ASIGNACION TAREA-MIEMBROEQUIPO" division="0.5" />
+        <Relation source="ROL" destination="MIEMBRO EQUIPO" division="0.625" />
         <Relation source="MIEMBRO EQUIPO" destination="SCRUM TEAM" division="0.5" />
+        <Relation source="MIEMBRO EQUIPO" destination="PLANNING" division="0.5" />
+        <Relation source="SCRUM TEAM" destination="ASIGNACION PROY" division="0.5" />
+        <Relation source="SPRINT" destination="ASIGNACION SPRINT-HU" division="0.5" />
+        <Relation source="PRODUCT OWNER" destination="PLANNING" division="0.5" />
+        <Relation source="PRODUCT OWNER" destination="SCRUM TEAM" division="0.5084745762711864" />
+        <Relation source="PRODUCT OWNER" destination="HISTORIA DE USUARIO" division="0.5" />
       </Relations>
       <Regions>
         <Region name="3,2,22-02-2010" color="cyan" x="623" y="302" width="116" height="50" />
@@ -372,6 +372,6 @@
       </Regions>
     </Shapes>
   </Diagram>
-  <Viewport zoom="0.56" x="11" y="21" />
+  <Viewport zoom="0.56" x="11" y="42" />
 </easyDesigner>
 
